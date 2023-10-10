@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Site Title</title>
     <!-- Include some CSS here for styling -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
@@ -17,9 +18,9 @@
 
     <div id="content"></div>
 
-    <!-- JS Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js">
-                let currentIndex = 1;
+    <!-- JS Logic -->
+    <script>
+        let currentIndex = 1;
         const totalFiles = 12;
 
         function fetchAndDisplayMarkdown(index) {
@@ -57,6 +58,7 @@
             fetchAndDisplayMarkdown(currentIndex);
         });
     </script>
+
 </body>
 
 </html>
