@@ -132,9 +132,7 @@
                     document.querySelectorAll('pre code').forEach((block) => {
                         hljs.highlightBlock(block);
                     });
-                    document.getElementById('content').innerHTML = new marked.Marked()
-                        .use(markedCodeFormat({ plugins: prettierPlugins }))
-                        .parse(md);
+                    document.getElementById('content').innerHTML = marked.parse(md);
                     updateNavigationButtons();
                 });
         }
