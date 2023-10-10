@@ -109,6 +109,7 @@
     <script>
         // Configure marked to use highlight.js
         marked.setOptions({
+            headerIds: true,
             highlight: function (code, lang) {
                 if (lang && hljs.getLanguage(lang)) {
                     try {
@@ -131,7 +132,9 @@
                     document.querySelectorAll('pre code').forEach((block) => {
                         hljs.highlightBlock(block);
                     });
-                    document.getElementById('content').innerHTML = marked.parse(md);
+                    document.getElementById('content').innerHTML = new marked.Marked()
+                        .use(markedCodeFormat({ plugins: prettierPlugins }))
+                        .parse(md);
                     updateNavigationButtons();
                 });
         }
