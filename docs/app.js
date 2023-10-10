@@ -2,7 +2,7 @@ let currentIndex = 1;
 const totalFiles = 12;  
 
 function fetchAndDisplayMarkdown(index) {
-    fetch(`docs/${index}.md`)
+    fetch(`${index}.md`)
         .then(response => response.text())
         .then(md => {
             document.getElementById('content').innerHTML = marked(md);
