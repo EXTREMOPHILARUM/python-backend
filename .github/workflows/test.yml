@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Install Ruby and Jekyll to build the /docs site
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+          
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      # Build the Jekyll site from /docs
+      - name: Build Jekyll site
+        run: |
+          cd docs
+          bundle exec jekyll build
+          mv _site ../_jekyll_output
+
+      # Move the Jekyll built site to the _site directory
+      - name: Prepare for deployment
+        run: |
+          mkdir _site
+          mv index.html _site/
+          cp -r _jekyll_output/* _site/
+
+      # Deploy the combined static and Jekyll built site to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+        with:
+          path: './_site'
+          branch: 'gh-pages'  # The default branch for GitHub Pages
