@@ -1,0 +1,7 @@
+{% extends "Base.html" %} {% block content %}
+<h1>Welcome to the page!</h1>
+{% if namechild %}
+<p>Hello, {{ namechild|lower }}!</p>
+{% else %}
+<p>Hello, Stranger!</p>
+{% endif %} {% endblock %}
