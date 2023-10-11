@@ -81,6 +81,22 @@ class: center, middle
 ## Act IV: The Backend Journey Begins
 
 ---
+class: left
+
+## The Library analogy
+
+1. **Library Building**: The server that hosts the backend.
+2. **Library Catalog**: The database storing information.
+3. **Librarians**: Backend developers managing the system.
+4. **Checkout System**: APIs handling requests and responses.
+5. **Library's Rules**: Backend logic or business logic.
+6. **Storage Rooms**: Data storage areas.
+7. **Security**: Protection measures against unauthorized access.
+8. **Special Sections**: Individual microservices or modules.
+9. **Intercoms**: Communication protocols.
+10. **Membership Card**: User authentication and authorization.
+
+---
 
 class: center
 
